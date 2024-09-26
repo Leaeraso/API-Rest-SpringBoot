@@ -1,10 +1,10 @@
 package com.example.inicial1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
+
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
 
 @Entity
 @AllArgsConstructor
@@ -13,10 +13,12 @@ import lombok.*;
 @Getter
 @ToString
 @Builder
-public class Domicilio {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Audited(targetAuditMode = NOT_AUDITED)
+public class Domicilio extends Base {
     private String calle;
     private int numero;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_localidad")
+    private Localidad localidad;
 }

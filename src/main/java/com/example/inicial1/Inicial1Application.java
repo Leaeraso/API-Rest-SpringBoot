@@ -1,7 +1,9 @@
 package com.example.inicial1;
 
 import com.example.inicial1.entities.Domicilio;
+import com.example.inicial1.entities.Localidad;
 import com.example.inicial1.entities.Persona;
+import com.example.inicial1.repositories.LocalidadRepository;
 import com.example.inicial1.repositories.PersonaRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -27,52 +29,65 @@ public class Inicial1Application {
 		System.out.println("funcionando");
 	}
 
-	@Bean
-	@Transactional
-	CommandLineRunner init(PersonaRepository personaRepository) {
-		return args -> {
-	// Creo un objeto persona
-Persona per1 = Persona.builder().
-		nombre("Alberto").apellido("Cortez").
-		build();
+	//@Bean
+	//@Transactional
+	//CommandLineRunner init(PersonaRepository personaRepository, LocalidadRepository localidadRepository) {
+		//return args -> {
+			//Creo una localidad
+			//Localidad l1 = Localidad.builder().denominacion("Godoy Cruz").build();
 
-Domicilio dom1 = Domicilio.builder().
-		calle("Suipacha").
-		numero(239).build();
+			//localidadRepository.save(l1);
 
-per1.setDomicilio(dom1);
+			// Creo un objeto persona
+			//Persona per1 = Persona.builder().
+					//nombre("Alberto").apellido("Cortez").
+					//build();
 
-			personaRepository.save(per1);
+			//Domicilio dom1 = Domicilio.builder().
+					//calle("Suipacha").
+					//numero(239).build();
 
-// Creo otra persona
-			Persona per2 = Persona.builder().
-					nombre("Alicia").apellido("Calderon").
-					build();
+			//dom1.setLocalidad(l1);
 
-			Domicilio dom2 = Domicilio.builder().
-					calle("Lulunta").
-					numero(339).build();
+			//per1.setDomicilio(dom1);
 
-			per2.setDomicilio(dom2);
+
+		//personaRepository.save(per1);
+
+		// Creo otra persona
+			//Persona per2 = Persona.builder().
+					//nombre("Alicia").apellido("Calderon").
+					//build();
+
+			//Domicilio dom2 = Domicilio.builder().
+					//calle("Lulunta").
+					//numero(339).build();
+
+			//dom2.setLocalidad(l1);
+
+			//per2.setDomicilio(dom2);
 
 			// Lo grabo a través del repositorio de Spring
-			personaRepository.save(per2);
+			//personaRepository.save(per2);
 
-			List<Persona> recuperadas = personaRepository.findAll();
-			System.out.println(recuperadas);
+			//List<Persona> recuperadas = personaRepository.findAll();
+			//System.out.println(recuperadas);
 
-			logger.info("Detalles de la persona: {}", recuperadas);
+			//logger.info("Detalles de la persona: {}", recuperadas);
 
+			//recuperadas.forEach(persona -> {
+				//System.out.println(persona.getLibros());
+			//});
 
-			Optional<Persona> recuperada = personaRepository.findById(1L);
-			System.out.println(recuperada);
+			//Optional<Persona> recuperada = personaRepository.findById(1L);
+			//System.out.println(recuperada);
 
-			logger.info("Detalles de la persona: {}", recuperada);
+			//logger.info("Detalles de la persona: {}", recuperada);
 
-			dom1.setCalle("Rodriguezaaaa");
+			//dom1.setCalle("Rodriguezaaaa");
 
-			personaRepository.save(per1);
+			//personaRepository.save(per1);
 
-		};
-	};
+		//};
+	//};
 }
